@@ -1,0 +1,9 @@
+# ── Hopper environment ──
+env:
+  name: hopper-medium-v2
+  suite: d4rl
+  horizon: 32
+  max_episode_steps: 1000
+  normalize_obs: true
+  normalize_act: true
+  success_metric: null

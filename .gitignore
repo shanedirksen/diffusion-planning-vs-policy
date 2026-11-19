@@ -1,0 +1,57 @@
+# Byte-compiled / cached
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Runs / outputs (use /* so negations work)
+runs/*
+!runs/checkpoints/
+runs/checkpoints/*
+*.ckpt
+
+# Allow final checkpoints (tracked by Git LFS)
+!runs/checkpoints/halfcheetah_medium_v2_H32.pt
+!runs/checkpoints/halfcheetah_medium_v2_transformer_H32.pt
+!runs/checkpoints/halfcheetah_medium_v2_trajectory_H32.pt
+!runs/checkpoints/halfcheetah_medium_v2_decision_H32.pt
+!runs/checkpoints/value_halfcheetah_medium_v2_H32.pt
+
+# Weights & Biases
+wandb/
+
+# MuJoCo
+*.mujoco_py_generated/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data caches
+*.hdf5
+*.h5
+d4rl_dataset/
+
+# Minari dataset cache
+.minari/
+
+# Logs
+*.log

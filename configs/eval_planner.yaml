@@ -1,0 +1,11 @@
+# ── Evaluate in PLANNER mode ──
+# Tp, To, Ta are read from the training checkpoint config.
+mode: planner
+
+eval:
+  n_episodes: 20
+  seed: 0
+  K_values: [1, 4, 8, 16, 32]   # how many candidate sequences to sample
+  discount: 0.99                 # for scoring rollouts
+
+results_dir: runs/results

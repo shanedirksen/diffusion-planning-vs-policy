@@ -1,0 +1,15 @@
+# ── AntMaze environment ──
+env:
+  name: antmaze-umaze-v2
+  suite: d4rl
+  horizon: 32
+  max_episode_steps: 700
+  normalize_obs: true
+  normalize_act: true
+  success_metric: goal_reached
+
+# Variants for sweep / comparison
+antmaze_variants:
+  - antmaze-umaze-v2
+  - antmaze-medium-play-v2
+  - antmaze-large-play-v2

@@ -1,0 +1,31 @@
+# ── Core ──
+torch>=2.0
+numpy>=1.24
+scipy
+
+# ── RL / Simulation ──
+gymnasium
+mujoco
+minari
+
+# ── Training utilities ──
+tqdm
+pyyaml
+
+# ── Logging ──
+# (CSV only - no external services needed)
+
+# ── Plotting / Analysis ──
+matplotlib
+pandas
+
+# ── GIF rendering ──
+imageio
+
+# ── PyTorch CUDA (install separately if needed) ──
+# For CUDA 12.8 (RTX 4000/5000 series):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+# For CUDA 12.1 (RTX 3000 series):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# For CPU only:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu

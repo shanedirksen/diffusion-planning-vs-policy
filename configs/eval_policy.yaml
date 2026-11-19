@@ -1,0 +1,9 @@
+# ── Evaluate in POLICY mode ──
+# Tp, To, Ta are read from the training checkpoint config.
+mode: policy
+
+eval:
+  n_episodes: 20
+  seed: 0
+
+results_dir: runs/results

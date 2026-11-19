@@ -1,0 +1,67 @@
+# ── Base configuration ──
+seed: 42
+device: auto          # cuda | cpu | auto
+
+# Diffusion model
+diffusion:
+  n_timesteps: 100        # DDPM diffusion steps
+  beta_schedule: cosine   # linear | cosine
+  clip_denoised: true
+
+# Model architecture
+model:
+  type: action          # action      = CNN U-Net + FiLM  (our default, ≈ DiffusionPolicy-C)
+                        # transformer = Transformer decoder + cross-attn  (DiffusionPolicy-T, Chi et al. 2023)
+                        # trajectory  = Trajectory U-Net + inpainting  (Diffuser, Janner et al. 2022)
+                        # decision    = State U-Net + CFG + inverse dynamics  (Decision Diffuser, Ajay et al. 2023)
+  # ── Shared ──
+  time_dim: 64
+  dropout: 0.1
+  # ── CNN U-Net (action) ──
+  dim: 128
+  dim_mults: [1, 2, 4]
+  cond_dim: 128
+  # ── Transformer (transformer) ──
+  emb_dim: 256            # token embedding dimension
+  n_heads: 4              # attention heads
+  n_layers: 8             # transformer decoder blocks
+  attn_dropout: 0.1       # attention dropout
+
+# Value function guidance (only used when model.type = trajectory)
+guidance:
+  scale: 0.1              # gradient guidance strength during sampling
+  hidden_dim: 256         # value function MLP hidden size
+  time_dim: 64
+  value_ckpt: null        # path to trained value fn checkpoint (null = no guidance)
+
+# Decision Diffuser (only used when model.type = decision)
+decision_diffuser:
+  guidance_scale: 1.2     # classifier-free guidance scale ω
+  temperature: 0.5        # low-temperature sampling α ∈ [0, 1)
+  cond_drop_prob: 0.25    # probability of dropping return conditioning (CFG training)
+  time_dim: 128           # time embedding dimension
+  return_dim: 128         # return embedding dimension
+  inv_dyn_hidden_dim: 512 # inverse dynamics MLP hidden size
+  inv_dyn_n_layers: 2     # inverse dynamics MLP layers
+  inv_dyn_lr: 2.0e-4      # inverse dynamics learning rate
+  inv_dyn_train_steps: 100_000  # steps for standalone inverse dynamics training
+  inv_dyn_ckpt: null      # path to pre-trained inverse dynamics (null = joint training)
+
+# Training
+train:
+  lr: 2.0e-4
+  value_lr: 2.0e-4            # learning rate for value function training
+  value_train_steps: 100_000  # value function training steps
+  weight_decay: 1.0e-6
+  batch_size: 1024
+  n_train_steps: 200_000
+  ema_decay: 0.995
+  save_every: 50_000
+  log_every: 1_000
+  grad_clip: 1.0
+  amp: true         # automatic mixed precision (bf16 on Ampere+)
+  compile: false    # torch.compile (slower on Windows/Blackwell currently)
+
+# Logging
+logging:
+  backend: csv

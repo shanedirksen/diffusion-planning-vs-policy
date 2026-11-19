@@ -1,0 +1,11 @@
+# ── HalfCheetah environment ──
+env:
+  name: halfcheetah-medium-v2
+  suite: d4rl           # d4rl | gym
+  horizon: 16           # prediction horizon Tp (Chi et al. 2023 default)
+  obs_horizon: 2        # observation context window To (Chi et al. 2023)
+  action_horizon: 8     # execution horizon Ta before replanning (Chi et al. 2023)
+  max_episode_steps: 1000
+  normalize_obs: true
+  normalize_act: true
+  success_metric: null   # locomotion tasks have no binary success

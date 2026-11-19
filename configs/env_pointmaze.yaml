@@ -1,0 +1,10 @@
+# ── PointMaze environment ──
+# Uses D4RL maze2d tasks
+env:
+  name: maze2d-umaze-v1
+  suite: d4rl
+  horizon: 32
+  max_episode_steps: 300
+  normalize_obs: true
+  normalize_act: true
+  success_metric: goal_reached   # binary: did agent reach goal region?

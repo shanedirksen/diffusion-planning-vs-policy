@@ -1,0 +1,20 @@
+# ── Sweeps for compute-vs-performance plots ──
+
+sweep:
+  envs:
+    - halfcheetah-medium-v2
+    - hopper-medium-v2
+    - antmaze-umaze-v2
+
+  policy:
+    horizons: [8, 16, 32, 64]
+
+  planner:
+    horizons: [8, 16, 32]
+    K_values: [1, 4, 8, 16, 32]
+
+  n_episodes: 20
+  seeds: [0, 1, 2]          # 3 seeds for error bars
+
+results_dir: runs/results
+plot_dir: runs/plots
